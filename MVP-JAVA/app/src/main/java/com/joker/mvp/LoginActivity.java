@@ -1,23 +1,15 @@
 package com.joker.mvp;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.joker.basemvp.net.bean.BaseModel;
-import com.joker.basemvp.net.error.RxSubscriber;
 import com.joker.mvp.base.DemoBaseActivity;
-import com.joker.mvp.base.HttpManager;
-import com.joker.mvp.bean.LoginBean;
 import com.joker.mvp.presenter.LoginContract;
 import com.joker.mvp.presenter.LoginPresenter;
 
-import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends DemoBaseActivity<LoginContract.Presenter> implements LoginContract.View {

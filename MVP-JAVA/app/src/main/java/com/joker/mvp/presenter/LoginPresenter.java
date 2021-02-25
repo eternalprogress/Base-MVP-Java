@@ -1,8 +1,6 @@
 package com.joker.mvp.presenter;
 
 
-import com.joker.basemvp.net.bean.BaseModel;
-import com.joker.basemvp.net.bean.BaseNetBean;
 import com.joker.basemvp.net.error.RxSubscriber;
 import com.joker.basemvp.presenter.BasePresenter;
 import com.joker.mvp.base.HttpManager;

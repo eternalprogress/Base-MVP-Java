@@ -3,14 +3,12 @@ package com.joker.basemvp.net.error;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
-import com.joker.basemvp.net.bean.BaseModel;
 import com.joker.basemvp.net.bean.BaseNetBean;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
