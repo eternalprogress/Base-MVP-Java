@@ -6,6 +6,13 @@ import android.widget.Toast;
 
 import com.joker.basemvp.app.RxPresenterActivity;
 import com.joker.basemvp.presenter.BaseContract;
+import com.joker.basemvp.utils.TransformerUtils;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.ObservableTransformer;
+import io.reactivex.rxjava3.core.SingleTransformer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @Author joker
@@ -30,5 +37,11 @@ public abstract class DemoBaseActivity<Presenter extends BaseContract.Presenter 
     public void dismissLoading() {
         Log.e("============","dismissLoading");
         Toast.makeText(this, "结束dialog", Toast.LENGTH_SHORT).show();
+    }
+    public  <Upstream> ObservableTransformer<@NonNull Upstream, @NonNull Upstream> RxIOForMain() {
+        return TransformerUtils.RxIOForMain();
+    }
+    public  <Upstream> SingleTransformer<@NonNull Upstream, @NonNull Upstream> ioForMain() {
+        return TransformerUtils.ioForMain();
     }
 }
