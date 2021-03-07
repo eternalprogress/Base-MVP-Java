@@ -8,6 +8,7 @@ import com.joker.basemvp.net.error.MyGsonConverterFactory;
 import com.joker.basemvp.utils.Factory;
 
 import java.io.IOException;
+import java.util.Map;
 
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Headers;
@@ -46,7 +47,19 @@ public class HttpUtils {
                     .baseUrl(baseUrl)
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
                     .addConverterFactory(MyGsonConverterFactory.create(Factory.getGson(),baseNetClass))
-                    .client(okHttpClient())
+                    .client(okHttpClient(null))
+                    .build();
+            retrofit = null;
+        }
+        return this;
+    }
+    public HttpUtils initRetrofitIO(String baseUrl, Class baseNetClass, Map<String,String> headers) {
+        if (retrofitIO == null) {
+            retrofitIO = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                    .addConverterFactory(MyGsonConverterFactory.create(Factory.getGson(),baseNetClass))
+                    .client(okHttpClient(headers))
                     .build();
             retrofit = null;
         }
@@ -58,7 +71,20 @@ public class HttpUtils {
                     .baseUrl(baseUrl)
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .addConverterFactory(MyGsonConverterFactory.create(Factory.getGson(),baseNetClass))
-                    .client(okHttpClient())
+                    .client(okHttpClient(null))
+                    .build();
+            retrofitIO = null;
+        }
+        return this;
+    }
+
+    public HttpUtils initRetrofit(String baseUrl,Class baseNetClass,Map<String,String> headers) {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                    .addConverterFactory(MyGsonConverterFactory.create(Factory.getGson(),baseNetClass))
+                    .client(okHttpClient(headers))
                     .build();
             retrofitIO = null;
         }
@@ -83,7 +109,7 @@ public class HttpUtils {
      * @return Client
      */
 
-    private OkHttpClient okHttpClient() {
+    private OkHttpClient okHttpClient(Map<String,String> headers) {
         final String tag = "MVPRetrofit";
 
         OkHttpClient.Builder client = new OkHttpClient
@@ -97,7 +123,11 @@ public class HttpUtils {
                 //       String timestamp = String.valueOf(System.currentTimeMillis());
                 //     String content = token + timestamp;
 //                String sign = EncryptUtils.encryptMD5ToString(content).toLowerCase();
-
+                if (headers !=null) {
+                    Request request = original.newBuilder()
+                           .headers(Headers.of(headers))
+                            .build();
+                }
                 /*Request request = original.newBuilder()
                         .header("token", token)
                         .header("source", "")

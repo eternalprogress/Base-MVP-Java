@@ -34,6 +34,8 @@ public interface BaseContract {
 
         //公用的销毁触发
         void destroy();
+        //公用的开始方法
+        void stop();
 
     }
 

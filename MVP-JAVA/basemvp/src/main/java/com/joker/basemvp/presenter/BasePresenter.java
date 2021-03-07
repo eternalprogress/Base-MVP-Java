@@ -46,6 +46,16 @@ public class BasePresenter<T extends BaseContract.View> implements BaseContract.
 
     }
 
+    @Override
+    public void stop() {
+
+        T view = mView;
+        if (view != null) {
+            view.dismissLoading();
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public void destroy() {

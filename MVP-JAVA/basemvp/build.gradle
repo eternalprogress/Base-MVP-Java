@@ -60,6 +60,6 @@ publish {
     repoName = 'MVP-JAVA'
     groupId = 'com.joker.mvp'
     artifactId = 'MVP-JAVA'
-    publishVersion = '0.0.7'
+    publishVersion = '0.0.8'
     desc = 'MVP-JAVA for Android'
 }
