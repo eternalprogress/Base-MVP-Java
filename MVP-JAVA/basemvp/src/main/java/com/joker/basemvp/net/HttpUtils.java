@@ -54,7 +54,7 @@ public class HttpUtils {
         return this;
     }
     public HttpUtils initRetrofitIO(String baseUrl, Class baseNetClass, Map<String,String> headers) {
-        if (retrofitIO == null) {
+
             retrofitIO = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
@@ -62,7 +62,6 @@ public class HttpUtils {
                     .client(okHttpClient(headers))
                     .build();
             retrofit = null;
-        }
         return this;
     }
     public HttpUtils initRetrofit(String baseUrl,Class baseNetClass) {
@@ -79,7 +78,6 @@ public class HttpUtils {
     }
 
     public HttpUtils initRetrofit(String baseUrl,Class baseNetClass,Map<String,String> headers) {
-        if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
@@ -87,7 +85,6 @@ public class HttpUtils {
                     .client(okHttpClient(headers))
                     .build();
             retrofitIO = null;
-        }
         return this;
     }
 
@@ -124,7 +121,7 @@ public class HttpUtils {
                 //     String content = token + timestamp;
 //                String sign = EncryptUtils.encryptMD5ToString(content).toLowerCase();
                 if (headers !=null) {
-                    Request request = original.newBuilder()
+                    original = original.newBuilder()
                            .headers(Headers.of(headers))
                             .build();
                 }

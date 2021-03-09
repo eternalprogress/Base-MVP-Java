@@ -8,6 +8,7 @@ import com.joker.basemvp.presenter.BaseContract;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 
 /**
@@ -25,7 +26,10 @@ public abstract class RxNDSubscriber<T> implements Observer<T> {
 
 
     protected abstract void success(T t);
+    @Override
+    public void onSubscribe(@NonNull Disposable d) { ;
 
+    }
 
     @Override
     public void onNext(@NonNull T t) {
