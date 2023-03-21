@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.github.dcendents.android-maven'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -55,11 +57,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-publish {
-    userOrg = 'jokermk'
-    repoName = 'MVP-JAVA'
-    groupId = 'com.joker.mvp'
-    artifactId = 'MVP-JAVA'
-    publishVersion = '1.0.1'
-    desc = 'MVP-JAVA for Android'
-}
+//publish {
+//    userOrg = 'jokermk'
+//    repoName = 'MVP-JAVA'
+//    groupId = 'com.joker.mvp'
+//    artifactId = 'MVP-JAVA'
+//    publishVersion = '1.0.2'
+//    desc = 'MVP-JAVA for Android'
+//}

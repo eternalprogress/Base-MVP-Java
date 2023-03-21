@@ -42,4 +42,8 @@ public abstract class RxNDSubscriber<T> implements Observer<T> {
             ApiErrorHelper.handleCommonError( e,mView);
     }
 
+    @Override
+    public void onComplete() {
+    }
+
 }
