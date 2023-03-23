@@ -44,7 +44,7 @@ public abstract class BaseBindingFragment<VB extends ViewBinding> extends Fragme
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
             savedInstanceState) {
         if (mRoot == null) {
-           useViewBinding();
+           useViewBinding(inflater,container);
             mRoot = mBinding.getRoot();
             initWidget(mRoot);
         } else {
@@ -59,12 +59,12 @@ public abstract class BaseBindingFragment<VB extends ViewBinding> extends Fragme
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void useViewBinding() {
+    private void useViewBinding(LayoutInflater inflater, ViewGroup container) {
         Type superclass = getClass().getGenericSuperclass();
         Class<?> aClass = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
         try {
-            Method method = aClass.getDeclaredMethod("inflate", LayoutInflater.class);
-            mBinding = (VB) method.invoke(null, getLayoutInflater());
+            Method method = aClass.getDeclaredMethod("inflate", LayoutInflater.class,ViewGroup.class,Boolean.class);
+            mBinding = (VB) method.invoke(null, inflater,container,false);
         } catch (NoSuchMethodException | IllegalAccessException| InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -123,6 +123,7 @@ public abstract class BaseBindingFragment<VB extends ViewBinding> extends Fragme
 
     @Override
     public void onDestroy() {
+        mBinding = null;
         super.onDestroy();
 
         if (needEventBus()) {
