@@ -28,7 +28,6 @@ import java.lang.reflect.Type;
 
 public abstract class BaseBindingFragment<VB extends ViewBinding> extends Fragment {
     protected View mRoot;
-    private ProgressDialog loadingDialog;
     protected VB mBinding;
 
     @Override
