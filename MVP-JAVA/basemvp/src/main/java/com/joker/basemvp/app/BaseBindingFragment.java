@@ -63,7 +63,7 @@ public abstract class BaseBindingFragment<VB extends ViewBinding> extends Fragme
         Type superclass = getClass().getGenericSuperclass();
         Class<?> aClass = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
         try {
-            Method method = aClass.getDeclaredMethod("inflate", LayoutInflater.class,ViewGroup.class,Boolean.class);
+            Method method = aClass.getDeclaredMethod("inflate", LayoutInflater.class,ViewGroup.class,boolean.class);
             mBinding = (VB) method.invoke(null, inflater,container,false);
         } catch (NoSuchMethodException | IllegalAccessException| InvocationTargetException e) {
             e.printStackTrace();
