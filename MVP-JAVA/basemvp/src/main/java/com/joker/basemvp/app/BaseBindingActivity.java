@@ -70,7 +70,6 @@ public abstract class BaseBindingActivity<VB extends ViewBinding> extends AppCom
      * 初始化窗口
      */
     protected void initWindows(){
-        StatusBarUtil.immersive(getWindow());
     }
 
     /**
@@ -89,11 +88,22 @@ public abstract class BaseBindingActivity<VB extends ViewBinding> extends AppCom
         return false;
     }
 
+    /**
+     * 是否需要沉浸式
+     * @return 如果需要返回true,不需要返回false 默认需要
+     */
+    protected boolean needImmersion() {
+        return true;
+    }
+
 
     /**
      * 初始化控件
      */
     protected void initWidget() {
+        if (needImmersion()) {
+            StatusBarUtil.immersive(this);
+        }
 
     }
 
