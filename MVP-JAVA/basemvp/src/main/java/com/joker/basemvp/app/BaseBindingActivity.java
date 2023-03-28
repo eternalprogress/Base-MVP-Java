@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
 import com.joker.basemvp.utils.ScreenUtils;
+import com.joker.basemvp.utils.StatusBarUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -69,7 +70,7 @@ public abstract class BaseBindingActivity<VB extends ViewBinding> extends AppCom
      * 初始化窗口
      */
     protected void initWindows(){
-
+        StatusBarUtil.immersive(getWindow());
     }
 
     /**
