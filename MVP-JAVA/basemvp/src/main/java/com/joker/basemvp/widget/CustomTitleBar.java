@@ -165,7 +165,8 @@ public class CustomTitleBar extends LinearLayout {
     public void setShow_left_image(boolean show_left_image) {
         left_image.setVisibility(show_left_image?VISIBLE:GONE);
         if (show_left_image) {
-            left_image.setImageResource(left_button_imageId);
+//            left_image.setImageResource(left_button_imageId);
+            setLeft_button_imageId(left_button_imageId);
         }
     }
 
@@ -207,7 +208,7 @@ public class CustomTitleBar extends LinearLayout {
      * @param left_button_imageId 资源图片id
      */
     public void setLeft_button_imageId(int left_button_imageId) {
-        left_image.setImageResource(left_button_imageId);
+        left_image.setBackgroundResource(left_button_imageId);
     }
 
 
