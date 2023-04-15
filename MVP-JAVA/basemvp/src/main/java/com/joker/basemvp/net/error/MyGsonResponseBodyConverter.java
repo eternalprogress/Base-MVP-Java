@@ -42,7 +42,12 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
             value.close();
             throw new ApiException(re.getStatus(), re.getMsg());
         }
-        response = mGson.toJson(re.getData());
+        if (re.getData()==null) {
+            response = mGson.toJson(re.getMsg());
+        }else {
+            response = mGson.toJson(re.getData());
+        }
+
         MediaType mediaType = value.contentType();
         Charset charset = mediaType != null ? mediaType.charset(UTF_8) : UTF_8;
         ByteArrayInputStream bis = new ByteArrayInputStream(response.getBytes());
@@ -53,6 +58,7 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
         } finally {
             value.close();
         }
+
 
     }
 }
